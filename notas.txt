@@ -2,4 +2,32 @@
 Sample using grafana-8.0.2.windows-amd64.zip
 
 
+.if you in skip-grant-tables mode
+in mysqld_safe:
+
+UPDATE mysql.user SET authentication_string=null WHERE User='root';
+FLUSH PRIVILEGES;
+exit;
+and then, in terminal:
+
+mysql -u root
+in mysql:
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'yourpasswd';
+2.not in skip-grant-tables mode
+just in mysql:
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'yourpasswd';
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
+mysql -u root -p 
+
+
+
+mysql> SHOW DATABASES;
+mysql> CREATE DATABASE monitor_tracker;
+mysql> exit
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
+mysql -u root -p monitor_tracker < D:\projetos\2021\startup\projeto-1\script.sql
 
